@@ -11,7 +11,7 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
-var tokenDeMesCouilles : String = "";
+var tokenPrincip : String = "";
 
 class UserService {
 
@@ -96,7 +96,7 @@ class UserService {
             val response = httpURLConnection.inputStream.bufferedReader().use { it.readText() }
                 val gson = GsonBuilder().setPrettyPrinting().create()
                 val prettyJson = gson.toJson(JsonParser.parseString(response))
-                tokenDeMesCouilles = prettyJson
+            tokenPrincip = prettyJson
         }catch (e : IOException){
         }finally {
             httpURLConnection?.disconnect()
@@ -105,7 +105,7 @@ class UserService {
     }
 
     fun getUserById(): List<UserInfo>{
-        val tokenDecode = JWT(tokenDeMesCouilles)
+        val tokenDecode = JWT(tokenPrincip)
         val subscriptionMetaDATA = tokenDecode.getClaim("id")
         val parsedValue = subscriptionMetaDATA.asString()
         val url = URL(String.format("$idUserApiUrl%s",parsedValue))
