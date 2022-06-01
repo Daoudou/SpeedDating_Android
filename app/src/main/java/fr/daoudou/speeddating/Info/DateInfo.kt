@@ -2,11 +2,12 @@ package fr.daoudou.speeddating.Info
 
 import java.io.Serializable
 
-data class DateInfo(val date : String,
-                    val comment : String? = null,
-                    val note : Int? = null,
-                    val userId : String? = null,
-                    val infoPeopleId : String? = null
+data class DateInfo(
+    var date : String,
+    var comment : String? = null,
+    var note : Int? = null,
+    val userId : String? = null,
+    val infoPeopleId : String? = null
                     ) : Comparable<DateInfo>, Serializable{
 
     override fun compareTo(other: DateInfo): Int {

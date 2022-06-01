@@ -2,10 +2,11 @@ package fr.daoudou.speeddating.Info
 
 import java.io.Serializable
 
-data class PeopleInfos(val firstName : String,
-                       val lastName : String,
-                       val sexe : String,
-                       val birthdate : String
+data class PeopleInfos(
+    var firstName : String,
+    var lastName : String,
+    var sexe : String,
+    var birthdate : String
                        ) : Comparable<PeopleInfos>, Serializable{
 
     override fun compareTo(other: PeopleInfos): Int {
