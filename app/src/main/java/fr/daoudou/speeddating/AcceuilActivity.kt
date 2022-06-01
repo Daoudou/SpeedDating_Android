@@ -56,7 +56,7 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+    override fun onItemSelected(p0: AdapterView<*>?, view: View?, p2: Int, p3: Long) {
         TODO("Not yet implemented")
     }
 
