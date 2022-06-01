@@ -48,7 +48,7 @@ class DateActivity : AppCompatActivity(){
             date.addOnPositiveButtonClickListener {
                 val formatDate = SimpleDateFormat("dd-MM-yyyy")
                 val dateFormated = formatDate.format(Date(it))
-                Toast.makeText(this,"$dateFormated is selecte",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"$dateFormated is selected",Toast.LENGTH_SHORT).show()
             }
 
             date.addOnCancelListener{
