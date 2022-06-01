@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/addDateMenu"
+        android:title="@string/ajouter_une_rencontre"
+        />
+
+    <item
+        android:id="@+id/addPersonneDateMenu"
+        android:title="@string/ajouter_une_personne"
+        />
+
+    <item
+        android:id="@+id/profilMenu"
+        android:title="@string/profil"
+        />
+    <item
+        android:id="@+id/parameterMenu"
+        android:title="@string/Parameter"
+        />
+    <item
+        android:id="@+id/helpMenu"
+        android:title="@string/aide"/>
+    <item
+        android:id="@+id/disconnectMenu"
+        android:title="@string/deconnexion"/>
+
+
+</menu>
+
+

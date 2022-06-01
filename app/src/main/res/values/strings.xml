@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Speed Dating</string>
+    <string name="afficher_la_liste_des_personnes_inscrites">Afficher la liste des personnes inscrites</string>
+    <string name="page_de_connexion">Page de connexion</string>
+    <string name="connexion">Connexion</string>
+    <string name="inscription">Inscription</string>
+    <string name="page_d_inscription">Page d\'inscription</string>
+    <string name="setting">Setting</string>
+    <string name="help">Help</string>
+    <string name="profil">Profil</string>
+    <string name="deconnexion">Deconnexion</string>
+    <string name="aide">Aide</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="Parameter">Parametres</string>
+    <string name="ajouter_une_rencontre">Ajouter une rencontre</string>
+    <string name="ajouter_une_personne">Ajouter une personne</string>
+
+
+    <string name="addDateTitle">Bienvenue sur la page des ajout de rencontre</string>
+    <string name="addDateDescription">Nous vous conseillons d\'abord d\'ajouter la personne rencontree ou a rencontree</string>
+    <string name="shareDate">Partage</string>
+
+
+
+    <string name="selected_item">Selected item:</string>
+    <string-array name="NoteDate">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+</resources>
