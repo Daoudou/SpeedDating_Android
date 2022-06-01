@@ -15,7 +15,7 @@ var tokenDeMesCouilles : String = "";
 
 class UserService {
 
-    private val apiUrl = "http://172.31.37.0:3000"
+    private val apiUrl = "http://172.21.182.38:3000"
     private val getAllUserApiUrl = "$apiUrl/users/"
     private val createUserApirUrl = "$apiUrl/users/create/"
     private val loginUserApiUrl = "$apiUrl/users/login/"
