@@ -1,4 +1,4 @@
-package fr.daoudou.speeddating
+package fr.daoudou.speeddating.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import fr.daoudou.speeddating.Info.UserInfo
+import fr.daoudou.speeddating.R
 import fr.daoudou.speeddating.Service.UserService
 
 class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -43,15 +44,17 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val intent = Intent(this,ProfilActivity::class.java)
-        val intentDate = Intent(this,DateActivity::class.java)
+        val intent = Intent(this, ProfilActivity::class.java)
+        val intentDateAdd = Intent(this, DateActivity::class.java)
+        val intentDateList = Intent(this,DateListActivity::class.java)
 
         val spinner = Spinner(this)
         spinner.id = NEW_SPINNER_ID
 
         when(item.itemId){
             R.id.profilMenu -> startActivity(intent)
-            R.id.addDateMenu -> startActivity(intentDate)
+            R.id.addDateMenu -> startActivity(intentDateAdd)
+            R.id.listDate -> startActivity(intentDateList)
         }
         return super.onOptionsItemSelected(item)
     }

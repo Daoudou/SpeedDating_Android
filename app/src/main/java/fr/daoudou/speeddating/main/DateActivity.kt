@@ -1,4 +1,4 @@
-package fr.daoudou.speeddating
+package fr.daoudou.speeddating.main
 
 import android.os.Bundle
 import android.view.View
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import fr.daoudou.speeddating.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,7 +18,7 @@ class DateActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         val btnDatePicker: FloatingActionButton
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.date_main)
+        setContentView(R.layout.date_add_main)
 
         // Le spinner pour la note des rencontre
         val note = resources.getStringArray(R.array.NoteDate)

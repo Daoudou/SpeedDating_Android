@@ -1,4 +1,4 @@
-package fr.daoudou.speeddating
+package fr.daoudou.speeddating.main
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,6 +10,8 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import fr.daoudou.speeddating.R
+import fr.daoudou.speeddating.Security.ResponseCode
 import fr.daoudou.speeddating.Service.UserService
 import java.io.IOException
 
@@ -43,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                     ).show()
                                     dialog.dismiss()
-                                    val intent = Intent(this@LoginActivity,AcceuilActivity::class.java)
+                                    val intent = Intent(this@LoginActivity, AcceuilActivity::class.java)
                                     startActivity(intent)
                                 })
                             }.create().show()
@@ -53,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
                                 setMessage("Merci de vérifier les informations renseignées ")
                                 setPositiveButton("Retry",DialogInterface.OnClickListener{
                                     dialog,which->
-                                    val intent = Intent(this@LoginActivity,LoginActivity::class.java)
+                                    val intent = Intent(this@LoginActivity, LoginActivity::class.java)
                                     startActivity(intent)
                                 })
                             }.create().show()

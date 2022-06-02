@@ -10,7 +10,7 @@ import java.util.*
 
 class DateService {
 
-    private val apiUrl = "http://172.21.182.38:3000"
+    private val apiUrl = "http://172.21.188.132:3000"
     private val getAllDate = "$apiUrl/dating/"
 
     fun getAllDate(): List<DateInfo>{

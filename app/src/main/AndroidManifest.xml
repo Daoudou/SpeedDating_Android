@@ -17,19 +17,24 @@
         android:supportsRtl="true"
         tools:targetApi="31"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".main.LoginActivity"
             android:exported="false"/>
-        <activity android:name=".RegisterActivity"
+        <activity android:name=".main.RegisterActivity"
             android:exported="false"/>
-        <activity android:name=".AcceuilActivity"
+        <activity android:name=".main.AcceuilActivity"
             android:exported="false"/>
-        <activity android:name=".ProfilActivity"
-            android:exported="false"
-            />
-        <activity android:name=".DateActivity"
+        <activity android:name=".main.ProfilActivity"
+            android:exported="false"/>
+        <activity android:name=".main.DateActivity"
+            android:exported="false"/>
+        <activity android:name=".main.DateListActivity"
+            android:exported="false"/>
+        <activity android:name=".main.MainActivity"
+            android:exported="false"/>
+        <activity android:name=".main.PeopleListActivity"
             android:exported="false"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".main.PeopleActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

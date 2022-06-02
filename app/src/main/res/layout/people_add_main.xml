@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/dateTitle"
+        android:id="@+id/peopleTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/addDateTitle"
@@ -16,32 +17,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/dateDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/addDateDescription"
-        android:textAlignment="center"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTitle"
-        />
 
     <EditText
-        android:id="@+id/editTextNameDate"
+        android:id="@+id/editTextNamePeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:backgroundTint="@color/black"
         android:ems="15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/peopleTitle" />
 
     <!--Date de la rencontre-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingButtonAddDate"
+        android:id="@+id/floatingButtonAddPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -49,42 +39,34 @@
         android:layout_marginLeft="100dp"
         android:src="@mipmap/ic_date_range"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNamePeople" />
 
     <!--Note de la rencontre-->
     <Spinner
-        android:id="@+id/noteSpinner"
+        android:id="@+id/noteSpinnerPeople"
+        style="@style/Widget.AppCompat.Spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/floatingButtonAddDate"
+        android:backgroundTint="@color/black"
+        android:background="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/floatingButtonAddPeople"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNamePeople" />
 
     <!--Commentaire de la rencontre-->
 
 
     <!--Ajout de la rencontre-->
     <Button
-        android:id="@+id/addDateBtn"
+        android:id="@+id/addPeopleBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Ajouter une rencontre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddDate" />
-
-    <!--Partage de la rencontre-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/shareDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toEndOf="@+id/addDateBtn"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddDate" />
+        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddPeople" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

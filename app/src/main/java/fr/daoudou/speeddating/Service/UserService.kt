@@ -6,7 +6,7 @@ import com.auth0.android.jwt.JWT
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import fr.daoudou.speeddating.Info.UserInfo
-import fr.daoudou.speeddating.ResponseCode
+import fr.daoudou.speeddating.Security.ResponseCode
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -15,7 +15,7 @@ var tokenPrincip : String = "";
 
 class UserService {
 
-    private val apiUrl = "http://172.21.182.38:3000"
+    private val apiUrl = "http://172.21.188.132:3000"
     private val getAllUserApiUrl = "$apiUrl/users/"
     private val createUserApirUrl = "$apiUrl/users/create/"
     private val loginUserApiUrl = "$apiUrl/users/login/"

@@ -1,4 +1,4 @@
-package fr.daoudou.speeddating
+package fr.daoudou.speeddating.Security
 
 class ResponseCode {
 

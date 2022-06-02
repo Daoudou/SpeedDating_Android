@@ -1,10 +1,11 @@
-package fr.daoudou.speeddating
+package fr.daoudou.speeddating.main
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import fr.daoudou.speeddating.Info.UserInfo
+import fr.daoudou.speeddating.R
 import fr.daoudou.speeddating.Service.UserService
 
 class ProfilActivity : AppCompatActivity() {

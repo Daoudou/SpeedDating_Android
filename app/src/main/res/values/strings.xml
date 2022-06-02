@@ -20,9 +20,24 @@
     <string name="addDateDescription">Nous vous conseillons d\'abord d\'ajouter la personne rencontree ou a rencontree</string>
     <string name="shareDate">Partage</string>
 
+    <string name="listDateTitle">Bienvenue sur la page des liste de rencontre</string>
+    <string name="listDateDate">Date de la rencontre : %s</string>
+    <string name="listDateComment">Commentaire : %s</string>
+    <string name="listDateNote">Note de la rencontre : %d</string>
+
+
+    <string name="addPeopleTitle">Bienvenue sur la page des ajout des personnes</string>
+
+    <string name="listPeopleTitle">Bienvenue sur la page des personne ajouter</string>
+    <string name="listPeopleFirstName">Prenom : %s</string>
+    <string name="listPeopleLastName">Nom : %s</string>
+    <string name="listPeopleSexe">Sexe : %s</string>
+    <string name="listPeopleBirthdate">Date de naissance : %s</string>
 
 
     <string name="selected_item">Selected item:</string>
+    <string name="people_list">Liste des personnes enregister</string>
+    <string name="date_list">Liste des rencontre enregister</string>
     <string-array name="NoteDate">
         <item>0</item>
         <item>1</item>
@@ -36,4 +51,19 @@
         <item>9</item>
         <item>10</item>
     </string-array>
+
+    <string-array name="NotePeople">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
 </resources>

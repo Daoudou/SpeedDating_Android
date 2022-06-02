@@ -1,4 +1,4 @@
-package fr.daoudou.speeddating
+package fr.daoudou.speeddating.main
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import fr.daoudou.speeddating.R
+import fr.daoudou.speeddating.Security.ResponseCode
 import fr.daoudou.speeddating.Service.UserService
 import java.io.IOException
 

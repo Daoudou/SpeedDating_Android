@@ -10,7 +10,7 @@ import java.util.*
 
 class PeopleService {
 
-    private val apiUrl = "http://172.21.182.38:3000"
+    private val apiUrl = "http://172.21.188.132:3000"
     private val getAllInfos = "$apiUrl/infos/infos"
 
     fun getAllInfos() : List<PeopleInfos>{
@@ -52,5 +52,7 @@ class PeopleService {
             httpURLConnection?.disconnect()
         }
     }
+
+
 
 }
