@@ -38,6 +38,9 @@
     <string name="selected_item">Selected item:</string>
     <string name="people_list">Liste des personnes enregister</string>
     <string name="date_list">Liste des rencontre enregister</string>
+    <string name="comment">commentaire</string>
+    <string name="Datedate">Set date for date</string>
+    <string name="add_date">Ajouter une rencontre</string>
     <string-array name="NoteDate">
         <item>0</item>
         <item>1</item>

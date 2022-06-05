@@ -1,7 +1,5 @@
 const {Sequelize, DataTypes, Model} = require('sequelize')
 const { sequelize } = require('./db')
-const Dating = require('../models/dating.model')
-const User = require('./user.model')
 const Infos = sequelize.define('Info',{
     id: {
         type: DataTypes.UUID,
@@ -25,8 +23,5 @@ const Infos = sequelize.define('Info',{
         allowNull: false
     }
 })
-
-Infos.hasMany(Dating)
-Dating.belongsTo(Infos)
 
 module.exports = Infos

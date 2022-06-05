@@ -5,7 +5,7 @@ import java.io.Serializable
 data class DateInfo(
     var date : String,
     var comment : String? = null,
-    var note : Int? = null,
+    var note : String? = null,
     val userId : String? = null,
     val infoPeopleId : String? = null
                     ) : Comparable<DateInfo>, Serializable{
@@ -32,7 +32,7 @@ data class DateInfo(
     override fun hashCode(): Int {
         var result = date.hashCode() ?: 0
         result = 31 * result + (comment?.hashCode() ?: 0)
-        result = 31 * result + (note ?: 0)
+        result = 31 * result + (note.hashCode() ?: 0)
         result = 31 * result + (userId?.hashCode() ?: 0)
         result = 31 * result + (infoPeopleId?.hashCode() ?: 0)
         return result

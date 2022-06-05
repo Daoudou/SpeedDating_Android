@@ -43,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     }
                 }catch (e : IOException){
+                    println(e)
                 }
             }).start()
         }

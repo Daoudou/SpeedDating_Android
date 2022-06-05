@@ -39,6 +39,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateDescription" />
 
+    <Spinner
+        android:id="@+id/spinnerNameDateAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateDescription" />
+
+
     <!--Date de la rencontre-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -50,7 +60,8 @@
         android:layout_marginLeft="100dp"
         android:src="@mipmap/ic_date_range"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate"
+        android:contentDescription="@string/Datedate" />
 
     <!--Note de la rencontre-->
     <Spinner
@@ -66,6 +77,15 @@
 
     <!--Commentaire de la rencontre-->
 
+    <EditText
+        android:id="@+id/editDateComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comment"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toEndOf="@+id/floatingButtonAddDate"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate" />
 
     <!--Ajout de la rencontre-->
     <Button
@@ -73,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Ajouter une rencontre"
+        android:text="@string/add_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddDate" />
 

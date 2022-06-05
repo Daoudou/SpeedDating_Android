@@ -29,12 +29,15 @@
             android:exported="false"/>
         <activity android:name=".main.DateListActivity"
             android:exported="false"/>
-        <activity android:name=".main.MainActivity"
+        <activity android:name=".main.PeopleActivity"
             android:exported="false"/>
         <activity android:name=".main.PeopleListActivity"
             android:exported="false"/>
+        <activity android:name=".main.LinkActivity"
+            android:exported="false"
+            />
         <activity
-            android:name=".main.PeopleActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,16 +1,17 @@
 const {Sequelize, DataTypes, Model} = require('sequelize')
 const { sequelize } = require('./db')
-
+const Dating = require('../models/dating.model')
 const User = require('./user.model')
 const Infos = require('./infos.model')
 
-const Dating = sequelize.define('Dating',{
-    id:{
+const Link = sequelize.define('LinkDateInfoUser',{
+
+    id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
-    idUserDating:{
+    idUser: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
 
@@ -19,30 +20,14 @@ const Dating = sequelize.define('Dating',{
             key: 'id'
         }
     },
-    idInfosDating:{
+    idInfos: {
         type : DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         references: {
             model : Infos,
             key : 'id'
         }
-    },
-    peopleAdding:{
-      type: DataTypes.STRING,
-      allowNull:false
-    },
-    dateDating:{
-        type: DataTypes.DATE,
-        allowNull: true
-    },
-    comment:{
-        type:DataTypes.STRING,
-        allowNull: true
-    },
-    note:{
-        type:DataTypes.INTEGER,
-        allowNull: false
-    },
+    }
 })
 
-module.exports = Dating
+module.exports = Link

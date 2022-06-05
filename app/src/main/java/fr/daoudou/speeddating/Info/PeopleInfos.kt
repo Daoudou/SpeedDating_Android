@@ -39,4 +39,8 @@ data class PeopleInfos(
         return "firstName:$firstName\nlastName:$lastName\nsexe:$sexe\nbirthdate:$birthdate"
     }
 
+    fun toStringNameLastName():String{
+        return "firstName:$firstName\nlastName:$lastName"
+    }
+
 }

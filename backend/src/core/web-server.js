@@ -4,6 +4,7 @@ const userRoutes = require('../controllers/user.routes');
 const infosRoutes = require('../controllers/infos.routes')
 const adminRoutes = require('../controllers/admin.routes')
 const datingRoutes = require('../controllers/dating.routes')
+const linkDateInfosUser = require('../controllers/linkDateInfosUser.routes')
 const { sequelize } = require('../models/db');
 const User = require('../models/user.model')
 const bcrypt = require("bcryptjs");
@@ -12,7 +13,7 @@ var salt = bcrypt.genSaltSync(12)
 class WebServer {
   app = undefined;
   port = 3000;
-  server = undefined;
+  server = "172.12.181.130";
 
   constructor() {
     this.app = express();
@@ -42,6 +43,7 @@ class WebServer {
     this.app.use('/infos',infosRoutes.initializeRoutes());
     this.app.use('/loginAdmin',adminRoutes.initializeRoutes())
     this.app.use('/dating',datingRoutes.initializeRoutes())
+    this.app.use('/linkDateInfos',linkDateInfosUser.initializeRoutes())
   }
 }
 

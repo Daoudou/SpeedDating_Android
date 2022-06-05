@@ -12,15 +12,23 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 var tokenPrincip : String = "";
+var tokenIdDecode : String ="";
 
 class UserService {
 
-    private val apiUrl = "http://172.21.188.132:3000"
+    private val apiUrl = "http://172.30.66.54:3000"
     private val getAllUserApiUrl = "$apiUrl/users/"
     private val createUserApirUrl = "$apiUrl/users/create/"
     private val loginUserApiUrl = "$apiUrl/users/login/"
     private val idUserApiUrl = "$apiUrl/users/usersId/"
 
+    fun getToken(): String {
+        return tokenIdDecode
+    }
+
+    fun getApiIp() : String {
+        return apiUrl
+    }
 
     fun getAllUser(): List<UserInfo> {
         val url = URL(getAllUserApiUrl)
@@ -87,6 +95,7 @@ class UserService {
             httpURLConnection.requestMethod = "POST"
             httpURLConnection.setRequestProperty("Content-Typr","application/json")
             httpURLConnection.setRequestProperty("Accept","application/json")
+            httpURLConnection.setRequestProperty ("Authorization", tokenPrincip);
             httpURLConnection.doInput = true
             httpURLConnection.doOutput = true
             httpURLConnection.connect()
@@ -97,6 +106,9 @@ class UserService {
                 val gson = GsonBuilder().setPrettyPrinting().create()
                 val prettyJson = gson.toJson(JsonParser.parseString(response))
             tokenPrincip = prettyJson
+            val tokenDecode = JWT(tokenPrincip)
+            val subscriptionMetaDATA = tokenDecode.getClaim("id")
+            tokenIdDecode = subscriptionMetaDATA.asString().toString()
         }catch (e : IOException){
         }finally {
             httpURLConnection?.disconnect()
@@ -105,10 +117,9 @@ class UserService {
     }
 
     fun getUserById(): List<UserInfo>{
-        val tokenDecode = JWT(tokenPrincip)
-        val subscriptionMetaDATA = tokenDecode.getClaim("id")
-        val parsedValue = subscriptionMetaDATA.asString()
-        val url = URL(String.format("$idUserApiUrl%s",parsedValue))
+
+
+        val url = URL(String.format("$idUserApiUrl%s", tokenIdDecode))
         var httpURLConnection : HttpURLConnection? = null
         try {
             httpURLConnection = url.openConnection() as HttpURLConnection

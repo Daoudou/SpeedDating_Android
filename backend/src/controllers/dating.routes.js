@@ -25,40 +25,34 @@ router.get('/:id', async (req, res) => {
     res.send(dateIdUser)
 })
 
-router.get('/userDateId', async (req,res)=>{
-    const token = jwtdecode(req.headers.authorization)
+router.get('/userDateId/:id', async (req,res)=>{
     const dateById = await Dating.findAll({
         where:{
-            UserId: token.id
+            idUserDating: req.params.id
         }
     })
     res.send(dateById)
 })
 
-router.get('/:idRencontre', async (req, res) => {
+router.get('/infosDatingId/:id', async (req, res) => {
     const dateId = await Dating.findAll({
         where: {
-            id: req.params.idRencontre
+            idInfosDating: req.params.id
         }
     })
     res.send(JSON.stringify(dateId))
 })
 
-router.post('/datingAdd',
-    //body('UserId').isString().notEmpty(),
-    body('InfoId').isString().notEmpty(),
-    body('dateDating').isString().notEmpty(),
-    body('note').isInt(),
+router.post('/datingAdd/:peopleAddingName/:dateDating/:comment/:note/:InfoAddId/:idUser',
     async (req, res) => {
-        validateBody(req)
         try {
-            const token = jwtdecode(req.headers.authorization)
             await Dating.create({
-                UserId: token.id,
-                InfoId: req.body.InfoId,
-                dateDating: req.body.dateDating,
-                comment: req.body.comment,
-                note: parseInt(req.body.note),
+                idUserDating: req.params.idUser,
+                idInfosDating: req.params.InfoAddId,
+                peopleAdding: req.params.peopleAddingName,
+                dateDating: req.params.dateDating,
+                comment: req.params.comment,
+                note: parseInt(req.params.note),
             })
             res.status(201).send('Infos de la rencontre ajouter').end()
         } catch (e) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,29 +20,53 @@
 
 
     <EditText
-        android:id="@+id/editTextNamePeople"
+        android:id="@+id/editTextLastNamePeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="84dp"
         android:backgroundTint="@color/black"
-        android:ems="15"
+        android:ems="10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/peopleTitle" />
 
+    <EditText
+        android:id="@+id/editTextFirstNamePeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/black"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLastNamePeople" />
+
     <!--Date de la rencontre-->
+
+    <!--Note de la rencontre-->
+
+    <EditText
+        android:id="@+id/editTextSexePeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/black"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFirstNamePeople" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingButtonAddPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="296dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
-        android:layout_marginLeft="100dp"
         android:src="@mipmap/ic_date_range"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNamePeople" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSexePeople" />
 
-    <!--Note de la rencontre-->
     <Spinner
         android:id="@+id/noteSpinnerPeople"
         style="@style/Widget.AppCompat.Spinner"
@@ -49,12 +74,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginRight="20dp"
-        android:backgroundTint="@color/black"
         android:background="@color/black"
         app:layout_constraintEnd_toStartOf="@+id/floatingButtonAddPeople"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNamePeople" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLastNamePeople" />
 
     <!--Commentaire de la rencontre-->
 
@@ -64,9 +88,10 @@
         android:id="@+id/addPeopleBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
         android:text="Ajouter une rencontre"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddPeople" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextSexePeople" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

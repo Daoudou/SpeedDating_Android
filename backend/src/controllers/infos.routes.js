@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { validateBody } = require('./validation/route.validator');
+const uuid = require('uuid')
 const Infos = require('../models/infos.model')
+const linkInfosDateUser = require('../models/linkDateInfosUser.model')
 const {body} = require('express-validator');
+const jwtDecode = require("jwt-decode");
 
 router.get('/infos', async(req,res)=>{
     const infos = await Infos.findAll()
@@ -11,7 +13,7 @@ router.get('/infos', async(req,res)=>{
 })
 
 router.get('/infoId/:id',async (req,res)=>{
-    const infos = await Infos.findOne({
+    const infos = await Infos.findAll({
         where:{
             id: req.params.id
         }
@@ -19,24 +21,43 @@ router.get('/infoId/:id',async (req,res)=>{
     return res.status(200).send(infos)
 })
 
-router.post('/infosAdd',
-    body('firstName'),
-    body('lastName'),
-    body('sexe'),
+router.post('/infosAdd/:firstName/:lastName/:sexe/:birthdate/:idUserAdd',
     async (req,res)=>{
-    validateBody(req)
     try {
-        const infos = await Infos.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            sexe: req.body.sexe,
-            birthdate: req.body.birthdate
+        const idlers = uuid.v4()
+
+        const personne = await Infos.findOne({
+            where : {
+                firstName: req.params.firstName,
+                lastName: req.params.lastName,
+                sexe: req.params.sexe,
+                birthdate: req.params.birthdate
+            }
         })
-        //console.log(infos.id)
-        res.status(201)
-        return res.send(infos.id).end()
+
+        if (personne == null) {
+            await Infos.create({
+                id: idlers,
+                firstName: req.params.firstName,
+                lastName: req.params.lastName,
+                sexe: req.params.sexe,
+                birthdate: req.params.birthdate
+            })
+            await linkInfosDateUser.create({
+                idUser: req.params.idUserAdd,
+                idInfos: idlers
+            })
+            res.status(201).send("Ajout effectuer")
+        }else{
+            await linkInfosDateUser.create({
+                idUser: req.params.idUserAdd,
+                idInfos: personne.id
+            })
+            res.status(201).send("Personne existante")
+        }
+
     }catch (e) {
-        console.error(e)
+        console.log(e)
         res.status(409).send('Echec lors de l\'ajout')
     }
 })

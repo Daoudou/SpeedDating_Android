@@ -45,6 +45,7 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val intent = Intent(this, ProfilActivity::class.java)
+        val intentAddPeople = Intent(this,PeopleActivity::class.java)
         val intentDateAdd = Intent(this, DateActivity::class.java)
         val intentDateList = Intent(this,DateListActivity::class.java)
 
@@ -53,6 +54,7 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
         when(item.itemId){
             R.id.profilMenu -> startActivity(intent)
+            R.id.addPersonneMenu -> startActivity(intentAddPeople)
             R.id.addDateMenu -> startActivity(intentDateAdd)
             R.id.listDate -> startActivity(intentDateList)
         }
