@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -30,82 +31,116 @@
         app:layout_constraintTop_toBottomOf="@+id/dateTitle"
         />
 
-    <EditText
-        android:id="@+id/editTextNameDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:ems="15"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDescription" />
+
+    <!--Date de la rencontre-->
+
+    <!--Note de la rencontre-->
 
     <Spinner
         android:id="@+id/spinnerNameDateAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="84dp"
+        android:layout_marginLeft="48dp"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/dateDescription" />
-
-
-    <!--Date de la rencontre-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingButtonAddDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="50dp"
         android:clickable="true"
-        android:layout_marginLeft="100dp"
+        android:contentDescription="@string/Datedate"
         android:src="@mipmap/ic_date_range"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate"
-        android:contentDescription="@string/Datedate" />
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/noteSpinner" />
 
-    <!--Note de la rencontre-->
+    <!--Commentaire de la rencontre-->
+
+    <!--Ajout de la rencontre-->
+
+    <!--Partage de la rencontre-->
+
     <Spinner
         android:id="@+id/noteSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/floatingButtonAddDate"
-        app:layout_constraintHorizontal_bias="0.947"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate" />
-
-    <!--Commentaire de la rencontre-->
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerNameDateAdd" />
 
     <EditText
         android:id="@+id/editDateComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="80dp"
         android:text="@string/comment"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/floatingButtonAddDate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameDate" />
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddDate" />
 
-    <!--Ajout de la rencontre-->
     <Button
         android:id="@+id/addDateBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
         android:text="@string/add_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editDateComment" />
 
-    <!--Partage de la rencontre-->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="@string/shareDate"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/addDateBtn"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddDate" />
+        app:layout_constraintTop_toBottomOf="@+id/editDateComment" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Personne a rajouter :"
+        android:layout_marginTop="84dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateDescription" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Note de la rencontre : "
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:text="Date de la rencontre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:text="Commentaire :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

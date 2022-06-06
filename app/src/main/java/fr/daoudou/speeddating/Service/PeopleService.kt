@@ -1,5 +1,6 @@
 package fr.daoudou.speeddating.Service
 
+import android.os.AsyncTask
 import android.util.JsonReader
 import android.util.JsonToken
 import fr.daoudou.speeddating.Info.PeopleInfos
@@ -10,7 +11,7 @@ import java.net.URL
 import java.util.*
 import fr.daoudou.speeddating.Service.UserService
 
-class PeopleService {
+class PeopleService : AsyncTask<String, String, List<*>>() {
 
     private val apiUrl = UserService().getApiIp()
     private val getAllInfos = "$apiUrl/infos/infos"
@@ -105,10 +106,14 @@ class PeopleService {
             if (code != HttpURLConnection.HTTP_CREATED)
                 return ResponseCode.StatusCode.BadRequest
         }catch (e : IOException){
-            println(e)
+            e.printStackTrace()
         }finally {
             httpURLConnection?.disconnect()
         }
         return ResponseCode.StatusCode.Created
+    }
+
+    override fun doInBackground(vararg p0: String?): List<*> {
+        TODO("Not yet implemented")
     }
 }

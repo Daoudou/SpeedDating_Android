@@ -1,35 +1,46 @@
 package fr.daoudou.speeddating.main
 
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import fr.daoudou.speeddating.Info.PeopleInfos
 import fr.daoudou.speeddating.R
 import fr.daoudou.speeddating.Security.ResponseCode
 import fr.daoudou.speeddating.Service.DateService
 import fr.daoudou.speeddating.Service.LinkService
+import fr.daoudou.speeddating.Service.PeopleService
 import fr.daoudou.speeddating.Service.UserService
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+import java.util.concurrent.TimeUnit
 
-class DateActivity : AppCompatActivity(){
+
+class DateActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         val btnDatePicker: FloatingActionButton
         super.onCreate(savedInstanceState)
+        val policy = ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+
         setContentView(R.layout.date_add_main)
         val svcLink = LinkService()
         val svcDate = DateService()
+        val svcPeople = PeopleService()
         val queryIdUserAdd = UserService().getToken()
         var dateFormated : String? = null
         var queryNote : String? = null
+        var queryPeople  :String? = null
+
         // Le spinner pour la note des rencontre
         val note = resources.getStringArray(R.array.NoteDate)
         val spinner = findViewById<Spinner>(R.id.noteSpinner)
@@ -69,82 +80,105 @@ class DateActivity : AppCompatActivity(){
 
         }
 
-        // SE CODE EST A DONNER LORS DE LA RECHERCHE DES PERSONNE ENREGISTRER PTN
-        // je pense que tout sa ne server a rien enfin pas totalement non plus
-        val intent = Intent(this,LinkActivity::class.java)
-        startActivity(intent)
         val idGet : String? = intent.getStringExtra("Data")
-        val spinnerDateName = findViewById<Spinner>(R.id.spinnerNameDateAdd)
-            if (spinnerDateName != null){
-                val adapterDate : ArrayAdapter<String?> = ArrayAdapter<String?>(
-                    this,
-                    android.R.layout.simple_spinner_item, idGet as List<String>
-                )
-                adapterDate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinnerDateName.adapter = adapterDate
-            }
+        var queryIdInfosDate : String? = null
+            val spinnerDateName = findViewById<Spinner>(R.id.spinnerNameDateAdd)
+                Thread(Runnable {
+                    runOnUiThread {
+                        try {
+                            var People: List<PeopleInfos> = svcPeople.getAllInfosName()
+                            if(spinnerDateName != null){
+                                val adapterListName = ArrayAdapter(this,
+                                    android.R.layout.simple_spinner_item,
+                                    People)
+                                spinnerDateName.adapter = adapterListName
 
-        findViewById<Button>(R.id.addDateBtn).setOnClickListener {
-            var queryPeople : String? = null
-            spinnerDateName.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    queryPeople = idGet?.get(position).toString()
-                }
+                                spinnerDateName.onItemSelectedListener = object :
+                                    AdapterView.OnItemSelectedListener{
+                                    override fun onItemSelected(
+                                        p0: AdapterView<*>?,
+                                        view: View?,
+                                        position: Int,
+                                        id: Long
+                                    ) {
+                                        queryPeople = People[position].toString()
+                                    }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    TODO("Not yet implemented")
-                }
+                                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                                        TODO("Not yet implemented")
+                                    }
 
-            }
+                                }
 
-            Thread(Runnable {
-                try {
-                    val queryIdInfosDate = svcLink.getAll(queryIdUserAdd).toString()
-                    val queryComment = findViewById<EditText>(R.id.editDateComment).toString()
-                    val createDateUser = queryPeople?.let { it1 ->
-                        dateFormated?.let { it2 ->
-                            queryNote?.let { it3 ->
-                                svcDate.createDatingByUser(it1,
-                                    it2,
-                                    queryComment,
-                                    it3,queryIdInfosDate,
-                                    queryIdUserAdd)
                             }
+                        }catch (e  :IOException){
+                            e.printStackTrace()
                         }
                     }
+                }).start()
 
-                    if (createDateUser != ResponseCode.StatusCode.Created){
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Ajout d'une recontre")
-                            setMessage("Rencontre ajouter avec succees")
-                            setPositiveButton("D'accord",DialogInterface.OnClickListener { dialog, which ->
-                                Toast.makeText(this@DateActivity,"Ajout de la rencontre effectuer",
-                                Toast.LENGTH_SHORT
-                                ).show()
-                                dialog.dismiss()
-                            })
-                        }.create().show()
-                    }else if (createDateUser != ResponseCode.StatusCode.BadRequest){
-                        AlertDialog.Builder(this).apply {
-                            setTitle("Erreur d'ajout d'une rencontre.")
-                            setMessage("Impossible d'ajouter une rencontre")
-                            setPositiveButton("Retry",DialogInterface.OnClickListener{
-                                    dialog,which->
-                                Toast.makeText(this@DateActivity,
-                                "Impossible d'ajout la rencontre",
-                                Toast.LENGTH_SHORT).show()
-                                dialog.dismiss()
-                            })
-                        }.create().show()
+            Thread(Runnable{
+                findViewById<Button>(R.id.addDateBtn).setOnClickListener {
+                    spinnerDateName.onItemSelectedListener = object :
+                        AdapterView.OnItemSelectedListener{
+                        override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            queryIdInfosDate = idGet?.get(position).toString()
+                        }
+
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                            TODO("Not yet implemented")
+                        }
+
                     }
-                }catch (e  :IOException){
-                    println(e)
+
+                    try {
+                        val queryComment = findViewById<EditText>(R.id.editDateComment).toString()
+                        val createDateUser = queryPeople.let { people ->
+                            dateFormated?.let { date ->
+                                queryNote?.let {note ->
+                                    queryIdInfosDate?.let { infosId ->
+                                        people?.let { peopleAdd ->
+                                            svcDate.createDatingByUser(
+                                                peopleAdd,
+                                                date,
+                                                queryComment,
+                                                note, infosId,
+                                                queryIdUserAdd)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (createDateUser == ResponseCode.StatusCode.Created){
+                            AlertDialog.Builder(this).apply {
+                                setTitle("Ajout d'une recontre")
+                                setMessage("Rencontre ajouter avec succees")
+                                setPositiveButton("D'accord",DialogInterface.OnClickListener { dialog, which ->
+                                    Toast.makeText(this@DateActivity,"Ajout de la rencontre effectuer",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    dialog.dismiss()
+                                })
+                            }.create().show()
+                        }else if (createDateUser == ResponseCode.StatusCode.BadRequest){
+                            AlertDialog.Builder(this).apply {
+                                setTitle("Erreur d'ajout d'une rencontre.")
+                                setMessage("Impossible d'ajouter une rencontre")
+                                setPositiveButton("Retry",DialogInterface.OnClickListener{
+                                        dialog,which->
+                                    Toast.makeText(this@DateActivity,
+                                        "Impossible d'ajout la rencontre",
+                                        Toast.LENGTH_SHORT).show()
+                                    dialog.dismiss()
+                                })
+                            }.create().show()
+                        }
+                    }catch (e  :IOException){
+                        e.printStackTrace()
+                    }
+
                 }
             }).start()
-        }
-
     }
-
-
 }

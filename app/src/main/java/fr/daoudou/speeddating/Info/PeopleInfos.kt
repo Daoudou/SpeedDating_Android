@@ -36,11 +36,6 @@ data class PeopleInfos(
     }
 
     override fun toString(): String {
-        return "firstName:$firstName\nlastName:$lastName\nsexe:$sexe\nbirthdate:$birthdate"
+        return "$firstName\n$lastName\n"
     }
-
-    fun toStringNameLastName():String{
-        return "firstName:$firstName\nlastName:$lastName"
-    }
-
 }

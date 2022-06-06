@@ -41,6 +41,7 @@
     <string name="comment">commentaire</string>
     <string name="Datedate">Set date for date</string>
     <string name="add_date">Ajouter une rencontre</string>
+    <string name="personne_list">Personne : %s</string>
     <string-array name="NoteDate">
         <item>0</item>
         <item>1</item>

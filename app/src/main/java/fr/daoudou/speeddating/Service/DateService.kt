@@ -62,7 +62,7 @@ class DateService {
                            queryIdUser : String
                            ) : ResponseCode.StatusCode{
 
-        val url = URL(String.format("$createDate%s/%s/%s/%d/%s/%s",
+        val url = URL(String.format("$createDate%s/%s/%s/%s/%s/%s",
                                     "$queryPeople",
                                     "$queryDatingDate",
                                     "$queryComment",
