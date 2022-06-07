@@ -1,5 +1,6 @@
 package fr.daoudou.speeddating.main
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.StrictMode
@@ -25,6 +26,7 @@ import java.util.concurrent.TimeUnit
 
 class DateActivity : AppCompatActivity() {
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val btnDatePicker: FloatingActionButton
@@ -70,11 +72,9 @@ class DateActivity : AppCompatActivity() {
             date.show(supportFragmentManager, "Date")
 
             date.addOnPositiveButtonClickListener {
-                val formatDate = SimpleDateFormat("dd-MM-yyyy")
+                //val formatDate = SimpleDateFormat("dd-MM-yyyy")
+                val formatDate = SimpleDateFormat("yyyy-dd-MM")
                 dateFormated = formatDate.format(Date(it))
-                Toast.makeText(this,"$dateFormated is selected",Toast.LENGTH_SHORT).show()
-                var dateTextView = findViewById<TextView>(R.id.textViewDate).toString()
-                dateTextView = dateFormated.toString()
             }
 
             date.addOnCancelListener{
@@ -123,10 +123,10 @@ class DateActivity : AppCompatActivity() {
                 }).start()
 
 
-        val queryComment = findViewById<EditText>(R.id.editDateComment).text.toString()
 
         findViewById<Button>(R.id.addDateBtn).setOnClickListener {
-                    Thread(Runnable{
+            val queryComment = findViewById<EditText>(R.id.editDateComment).text.toString()
+            Thread(Runnable{
                     runOnUiThread {
                         try {
                             val createDateUserAdd = svcDate.createDatingByUser(queryPeople,dateFormated,queryComment,queryNote,queryIdInfosDate,queryIdUserAdd)
