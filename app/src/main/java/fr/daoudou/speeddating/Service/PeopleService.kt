@@ -32,7 +32,7 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
             reader.beginArray()
             while (reader.hasNext()){
                 reader.beginObject()
-                val peopleList = PeopleInfos("","","","")
+                val peopleList = PeopleInfos("","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
                         "firstName"-> if (reader.peek()!= JsonToken.NULL) peopleList.firstName = reader.nextString()
@@ -73,12 +73,48 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
             reader.beginArray()
             while (reader.hasNext()){
                 reader.beginObject()
-                val peopleList = PeopleInfos("","","","")
+                val peopleList = PeopleInfos("","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
                         "firstName"-> if (reader.peek()!= JsonToken.NULL) peopleList.firstName = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
                         "lastName" -> if (reader.peek()!= JsonToken.NULL) peopleList.lastName = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
+                        else -> reader.skipValue()
+                    }
+                }
+                result.add(peopleList)
+                reader.endObject()
+            }
+            reader.endArray()
+            return result
+        }catch (e : IOException){
+            return emptyList()
+        }finally {
+            httpURLConnection?.disconnect()
+        }
+    }
+
+
+    fun getIdInfosName() : List<PeopleInfos>{
+        val url = URL(getAllInfos)
+        var httpURLConnection : HttpURLConnection? = null
+        try {
+            httpURLConnection = url.openConnection() as HttpURLConnection
+            httpURLConnection.connect()
+            val code = httpURLConnection.responseCode
+            if (code != HttpURLConnection.HTTP_OK)
+                return emptyList()
+            val inputStream = httpURLConnection.inputStream ?: return emptyList()
+            val reader = JsonReader(inputStream.bufferedReader())
+            val result = mutableListOf<PeopleInfos>()
+            reader.beginArray()
+            while (reader.hasNext()){
+                reader.beginObject()
+                val peopleList = PeopleInfos("","","","","")
+                while (reader.hasNext()){
+                    when(reader.nextName()){
+                        "id"-> if (reader.peek()!= JsonToken.NULL) peopleList.id = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
                         else -> reader.skipValue()
                     }

@@ -37,9 +37,10 @@ class DateActivity : AppCompatActivity() {
         val svcDate = DateService()
         val svcPeople = PeopleService()
         val queryIdUserAdd = UserService().getToken()
-        var dateFormated : String? = null
-        var queryNote : String? = null
-        var queryPeople  :String? = null
+        var queryIdInfoDateAdd = LinkService().getAll(queryIdUserAdd)
+        var dateFormated : String =""
+        var queryNote : String = ""
+        var queryPeople  :String =""
 
         // Le spinner pour la note des rencontre
         val note = resources.getStringArray(R.array.NoteDate)
@@ -72,6 +73,8 @@ class DateActivity : AppCompatActivity() {
                 val formatDate = SimpleDateFormat("dd-MM-yyyy")
                 dateFormated = formatDate.format(Date(it))
                 Toast.makeText(this,"$dateFormated is selected",Toast.LENGTH_SHORT).show()
+                var dateTextView = findViewById<TextView>(R.id.textViewDate).toString()
+                dateTextView = dateFormated.toString()
             }
 
             date.addOnCancelListener{
@@ -80,13 +83,14 @@ class DateActivity : AppCompatActivity() {
 
         }
 
-        val idGet : String? = intent.getStringExtra("Data")
-        var queryIdInfosDate : String? = null
+
+        var queryIdInfosDate : String = ""
             val spinnerDateName = findViewById<Spinner>(R.id.spinnerNameDateAdd)
                 Thread(Runnable {
                     runOnUiThread {
                         try {
                             var People: List<PeopleInfos> = svcPeople.getAllInfosName()
+                            var PeopleId : List<PeopleInfos> = svcPeople.getIdInfosName()
                             if(spinnerDateName != null){
                                 val adapterListName = ArrayAdapter(this,
                                     android.R.layout.simple_spinner_item,
@@ -102,6 +106,7 @@ class DateActivity : AppCompatActivity() {
                                         id: Long
                                     ) {
                                         queryPeople = People[position].toString()
+                                        queryIdInfosDate = PeopleId[position].id
                                     }
 
                                     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -117,68 +122,48 @@ class DateActivity : AppCompatActivity() {
                     }
                 }).start()
 
-            Thread(Runnable{
-                findViewById<Button>(R.id.addDateBtn).setOnClickListener {
-                    spinnerDateName.onItemSelectedListener = object :
-                        AdapterView.OnItemSelectedListener{
-                        override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            queryIdInfosDate = idGet?.get(position).toString()
-                        }
 
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
-                            TODO("Not yet implemented")
-                        }
+        val queryComment = findViewById<EditText>(R.id.editDateComment).text.toString()
 
-                    }
-
-                    try {
-                        val queryComment = findViewById<EditText>(R.id.editDateComment).toString()
-                        val createDateUser = queryPeople.let { people ->
-                            dateFormated?.let { date ->
-                                queryNote?.let {note ->
-                                    queryIdInfosDate?.let { infosId ->
-                                        people?.let { peopleAdd ->
-                                            svcDate.createDatingByUser(
-                                                peopleAdd,
-                                                date,
-                                                queryComment,
-                                                note, infosId,
-                                                queryIdUserAdd)
-                                        }
-                                    }
-                                }
+        findViewById<Button>(R.id.addDateBtn).setOnClickListener {
+                    Thread(Runnable{
+                    runOnUiThread {
+                        try {
+                            val createDateUserAdd = svcDate.createDatingByUser(queryPeople,dateFormated,queryComment,queryNote,queryIdInfosDate,queryIdUserAdd)
+                            if (createDateUserAdd == ResponseCode.StatusCode.Created){
+                                AlertDialog.Builder(this).apply {
+                                    setTitle("Ajout d'une recontre")
+                                    setMessage("Rencontre ajouter avec succees")
+                                    setPositiveButton("D'accord",DialogInterface.OnClickListener { dialog, which ->
+                                        Toast.makeText(this@DateActivity,"Ajout de la rencontre effectuer",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        dialog.dismiss()
+                                    })
+                                }.create().show()
+                            }else if (createDateUserAdd == ResponseCode.StatusCode.BadRequest){
+                                AlertDialog.Builder(this@DateActivity).apply {
+                                    setTitle("Erreur d'ajout d'une rencontre.")
+                                    setMessage("Impossible d'ajouter une rencontre")
+                                    setPositiveButton("Retry",DialogInterface.OnClickListener{
+                                            dialog,which->
+                                        Toast.makeText(this@DateActivity,
+                                            "Impossible d'ajout la rencontre",
+                                            Toast.LENGTH_SHORT).show()
+                                        dialog.dismiss()
+                                    })
+                                }.create().show()
                             }
+                        }catch (e  :IOException){
+                            e.printStackTrace()
                         }
-
-                        if (createDateUser == ResponseCode.StatusCode.Created){
-                            AlertDialog.Builder(this).apply {
-                                setTitle("Ajout d'une recontre")
-                                setMessage("Rencontre ajouter avec succees")
-                                setPositiveButton("D'accord",DialogInterface.OnClickListener { dialog, which ->
-                                    Toast.makeText(this@DateActivity,"Ajout de la rencontre effectuer",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    dialog.dismiss()
-                                })
-                            }.create().show()
-                        }else if (createDateUser == ResponseCode.StatusCode.BadRequest){
-                            AlertDialog.Builder(this).apply {
-                                setTitle("Erreur d'ajout d'une rencontre.")
-                                setMessage("Impossible d'ajouter une rencontre")
-                                setPositiveButton("Retry",DialogInterface.OnClickListener{
-                                        dialog,which->
-                                    Toast.makeText(this@DateActivity,
-                                        "Impossible d'ajout la rencontre",
-                                        Toast.LENGTH_SHORT).show()
-                                    dialog.dismiss()
-                                })
-                            }.create().show()
-                        }
-                    }catch (e  :IOException){
-                        e.printStackTrace()
                     }
-
+                }).start()
                 }
-            }).start()
+
     }
+}
+
+private fun String?.get(index: String): String {
+    return index
 }

@@ -1,5 +1,6 @@
 package fr.daoudou.speeddating.Service
 
+import android.os.AsyncTask
 import android.util.JsonReader
 import android.util.JsonToken
 import fr.daoudou.speeddating.Info.LinkInfo
@@ -7,7 +8,7 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
-class LinkService {
+class LinkService : AsyncTask<String, List<*>, String>() {
 
     private val apiUrl = UserService().getApiIp()
     private val getAllIdInfoWithIdUser = "$apiUrl/linkUser/"
@@ -47,5 +48,9 @@ class LinkService {
             httpURLConnection?.disconnect()
         }
 
+    }
+
+    override fun doInBackground(vararg p0: String?): String {
+        TODO("Not yet implemented")
     }
 }

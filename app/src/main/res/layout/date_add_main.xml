@@ -143,4 +143,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%s"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toEndOf="@+id/floatingButtonAddDate"
+        app:layout_constraintTop_toBottomOf="@+id/noteSpinner" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

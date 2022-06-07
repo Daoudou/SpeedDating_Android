@@ -3,6 +3,7 @@ package fr.daoudou.speeddating.Info
 import java.io.Serializable
 
 data class PeopleInfos(
+    var id :String,
     var firstName : String,
     var lastName : String,
     var sexe : String,
@@ -38,4 +39,9 @@ data class PeopleInfos(
     override fun toString(): String {
         return "$firstName\n$lastName\n"
     }
+
+    fun toStringId(): String {
+        return "$id"
+    }
+
 }
