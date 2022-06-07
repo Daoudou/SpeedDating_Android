@@ -14,9 +14,10 @@ class ProfilActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profil_main)
         val svc  = UserService()
+        val svcToken = UserService().getToken().toString()
         val listPseudo = findViewById<ListView>(R.id.listViewProfil)
         Thread(Runnable{
-            val result = svc.getUserById()
+            val result = svc.getUserById(svcToken)
                 runOnUiThread{
                     listPseudo.adapter = ArrayAdapter<UserInfo>(applicationContext,
                         android.R.layout.simple_list_item_1,

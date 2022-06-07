@@ -60,11 +60,11 @@
         android:id="@+id/floatingButtonAddPeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="324dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginLeft="50dp"
         android:clickable="true"
-        android:src="@mipmap/ic_date_range"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@mipmap/ic_date"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/editTextSexePeople" />
 
     <Spinner
@@ -89,16 +89,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="70dp"
-        android:text="Ajouter une rencontre"
+        android:layout_marginTop="110dp"
+        android:text="@string/add_btn_string_date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextSexePeople" />
+        app:layout_constraintTop_toBottomOf="@+id/floatingButtonAddPeople" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nom de famille : "
+        android:text="@string/add_lastName_string"
         android:layout_marginTop="110dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prenom : "
+        android:text="@string/add_firstName_string"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,10 +118,20 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sexe : "
+        android:text="@string/add_sexe_string"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_birthdate_string"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,6 @@ data class UserInfo(
     var roles: String? = null) : Comparable<UserInfo>,Serializable{
 
 
-
-
     override fun compareTo(other: UserInfo): Int {
         return pseudo.compareTo(other.pseudo)
     }
@@ -39,7 +37,7 @@ data class UserInfo(
     }
 
     override fun toString(): String {
-        return "pseudo : $pseudo\nemail : $email'\n"
+        return "pseudo : $pseudo\nemail : $email'\nrole: $roles"
     }
 
 }

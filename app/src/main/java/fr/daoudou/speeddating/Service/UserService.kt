@@ -116,10 +116,10 @@ class UserService {
         return ResponseCode.StatusCode.OK
     }
 
-    fun getUserById(): List<UserInfo>{
+    fun getUserById(queryIdUser:String): List<UserInfo>{
 
 
-        val url = URL(String.format("$idUserApiUrl%s", tokenIdDecode))
+        val url = URL(String.format("$idUserApiUrl%s", "$queryIdUser"))
         var httpURLConnection : HttpURLConnection? = null
         try {
             httpURLConnection = url.openConnection() as HttpURLConnection
@@ -137,6 +137,14 @@ class UserService {
                 when(reader.nextName()){
                     "pseudo" ->if(reader.peek()!= JsonToken.NULL) userList.pseudo = reader.nextString()
                     else {reader.hasNext(); "Non renseigne"}
+
+                    "email" ->if(reader.peek()!= JsonToken.NULL) userList.email = reader.nextString()
+                    else {reader.hasNext(); "Non renseigne"}
+
+                    "roles" ->if(reader.peek()!= JsonToken.NULL) userList.roles = reader.nextString()
+                    else {reader.hasNext(); "Non renseigne"}
+
+
                     else -> reader.skipValue()
                 }
             }

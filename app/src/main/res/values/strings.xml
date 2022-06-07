@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Speed Dating</string>
     <string name="afficher_la_liste_des_personnes_inscrites">Afficher la liste des personnes inscrites</string>
+
     <string name="page_de_connexion">Page de connexion</string>
+    <string name="app_description">Bienvenue sur notre application de speed dating,\nici vous pouvez ajouter des rencontre avec des personnes rencontrer ou a rencontrer et notamant avec les autres utilisateurs.\n\nMerci de vus inscrire ou de vous connectez si vous avez deja un compte</string>
     <string name="connexion">Connexion</string>
     <string name="inscription">Inscription</string>
+
     <string name="page_d_inscription">Page d\'inscription</string>
+
     <string name="setting">Setting</string>
     <string name="help">Help</string>
     <string name="profil">Profil</string>
@@ -42,6 +46,15 @@
     <string name="Datedate">Set date for date</string>
     <string name="add_date">Ajouter une rencontre</string>
     <string name="personne_list">Personne : %s</string>
+    <string name="add_btn_string_date">Ajouter une rencontre</string>
+    <string name="add_lastName_string">Nom de famille :</string>
+    <string name="add_firstName_string">Prenom :</string>
+    <string name="add_sexe_string">Sexe :</string>
+    <string name="add_birthdate_string">Date de naissance :</string>
+    <string name="search_user">Rechercher un utilisateur :</string>
+    <string name="App_Name">Speed Dating Industrie</string>
+    <string name="login_string_email">Email :</string>
+    <string name="login_string_password">Mot de passe :</string>
     <string-array name="NoteDate">
         <item>0</item>
         <item>1</item>
