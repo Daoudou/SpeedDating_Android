@@ -16,6 +16,7 @@ class DateListActivity : AppCompatActivity() {
         setContentView(R.layout.date_list_main)
 
         val svc = DateService()
+        /*
         val listDate = findViewById<ListView>(R.id.listDateListView)
         Thread(Runnable {
             runOnUiThread {
@@ -30,6 +31,6 @@ class DateListActivity : AppCompatActivity() {
                 )
                 listDate.visibility = View.VISIBLE
             }
-        }).start()
+        }).start() */
     }
 }

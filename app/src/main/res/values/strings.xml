@@ -55,6 +55,7 @@
     <string name="App_Name">Speed Dating Industrie</string>
     <string name="login_string_email">Email :</string>
     <string name="login_string_password">Mot de passe :</string>
+    <string name="list_date_name">Rencontre du : %s</string>
     <string-array name="NoteDate">
         <item>0</item>
         <item>1</item>
