@@ -16,7 +16,7 @@ var tokenIdDecode : String ="";
 
 class UserService {
 
-    private val apiUrl = "http://172.17.136.204:3000"
+    private val apiUrl = "http://172.17.128.158:3000"
     private val getAllUserApiUrl = "$apiUrl/users/"
     private val createUserApirUrl = "$apiUrl/users/create/"
     private val loginUserApiUrl = "$apiUrl/users/login/"

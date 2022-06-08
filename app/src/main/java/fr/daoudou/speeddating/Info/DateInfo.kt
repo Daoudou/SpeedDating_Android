@@ -3,6 +3,7 @@ package fr.daoudou.speeddating.Info
 import java.io.Serializable
 
 data class DateInfo(
+    var peopleAdd :String,
     var date : String,
     var comment : String? = null,
     var note : String? = null,
@@ -20,6 +21,7 @@ data class DateInfo(
 
         other as DateInfo
 
+        if (peopleAdd != other.peopleAdd) return false
         if (date != other.date) return false
         if (comment != other.comment) return false
         if (note != other.note) return false
@@ -31,6 +33,7 @@ data class DateInfo(
 
     override fun hashCode(): Int {
         var result = date.hashCode() ?: 0
+        result = 31 * result + (peopleAdd.hashCode() ?: 0)
         result = 31 * result + (comment?.hashCode() ?: 0)
         result = 31 * result + (note.hashCode() ?: 0)
         result = 31 * result + (userId?.hashCode() ?: 0)

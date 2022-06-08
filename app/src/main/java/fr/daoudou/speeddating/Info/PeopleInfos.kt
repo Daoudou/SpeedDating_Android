@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class PeopleInfos(
     var id :String,
+    var userId: String,
     var firstName : String,
     var lastName : String,
     var sexe : String,
@@ -23,6 +24,7 @@ data class PeopleInfos(
         if (firstName != other.firstName) return false
         if (lastName != other.lastName) return false
         if (sexe != other.sexe) return false
+        if (userId != other.userId) return false
         if (birthdate != other.birthdate) return false
 
         return true
@@ -32,16 +34,13 @@ data class PeopleInfos(
         var result = firstName.hashCode() ?: 0
         result = 31 * result + (lastName.hashCode() ?: 0)
         result = 31 * result + (sexe.hashCode() ?: 0)
+        result = 31 * result + (userId?.hashCode() ?: 0)
         result = 31 * result + (birthdate.hashCode() ?: 0)
         return result
     }
 
     override fun toString(): String {
         return "$firstName\n$lastName\n"
-    }
-
-    fun toStringId(): String {
-        return "$id"
     }
 
 }

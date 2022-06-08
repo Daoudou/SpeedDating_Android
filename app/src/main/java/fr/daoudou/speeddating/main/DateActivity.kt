@@ -89,7 +89,7 @@ class DateActivity : AppCompatActivity() {
                 Thread(Runnable {
                     runOnUiThread {
                         try {
-                            var People: List<PeopleInfos> = svcPeople.getAllInfosName()
+                            var People: List<PeopleInfos> = svcPeople.getAllInfosName(queryIdUserAdd)
                             var PeopleId : List<PeopleInfos> = svcPeople.getIdInfosName()
                             if(spinnerDateName != null){
                                 val adapterListName = ArrayAdapter(this,
@@ -106,9 +106,8 @@ class DateActivity : AppCompatActivity() {
                                         id: Long
                                     ) {
                                         queryPeople = People[position].toString()
-                                        queryIdInfosDate = PeopleId[position].id
+                                        queryIdInfosDate = People[position].id
                                     }
-
                                     override fun onNothingSelected(p0: AdapterView<*>?) {
                                         TODO("Not yet implemented")
                                     }

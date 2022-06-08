@@ -24,7 +24,7 @@ class PeopleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.people_add_main)
         val svc = PeopleService()
-        var birthdateFormated : String? = null
+        var birthdateFormated : String = ""
         // Le spinner pour la note des rencontre
         val note  = resources.getStringArray(R.array.NotePeople)
         val spinner = findViewById<Spinner>(R.id.noteSpinnerPeople)
@@ -53,7 +53,7 @@ class PeopleActivity : AppCompatActivity() {
             val birthdate = MaterialDatePicker.Builder.datePicker().build()
             birthdate.show(supportFragmentManager, "Birthdate")
             birthdate.addOnPositiveButtonClickListener {
-                val formateBirthdate = SimpleDateFormat("dd-MM-yyyy")
+                val formateBirthdate = SimpleDateFormat("yyyy-MM-dd")
                 birthdateFormated = formateBirthdate.format(Date(it))
             }
         }
@@ -65,8 +65,8 @@ class PeopleActivity : AppCompatActivity() {
             val queryIdUserAdd = UserService().getToken()
             Thread(Runnable {
                 try {
-                    val peopleAdd = birthdateFormated?.let { it1 -> svc.createUserInfos(queryFirstName,queryLastName,querySexe,it1, queryIdUserAdd)
-                    }
+                    val peopleAdd = svc.createUserInfos(queryFirstName,queryLastName,querySexe,birthdateFormated, queryIdUserAdd)
+
                     runOnUiThread {
                         if(peopleAdd == ResponseCode.StatusCode.Created){
                             AlertDialog.Builder(this).apply {

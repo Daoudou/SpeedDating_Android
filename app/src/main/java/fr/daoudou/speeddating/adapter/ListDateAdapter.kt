@@ -23,12 +23,11 @@ class ListDateAdapter(private val context: Context,
         return ListDateViewHolder(LayoutInflater.from(context).inflate(R.layout.listrow,parent,false))
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ListDateViewHolder, position: Int) {
 
         val listDate = dataSource[position]
-
-        holder.textViewDateList.text = listDate.date
-
+        holder.textViewDateList.text = "Rencontre le : " + listDate.date + "\n" + "Avec : " + listDate.peopleAdd
     }
 
     override fun getItemCount(): Int {

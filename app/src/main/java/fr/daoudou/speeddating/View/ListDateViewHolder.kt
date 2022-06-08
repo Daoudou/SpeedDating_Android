@@ -11,6 +11,4 @@ class ListDateViewHolder(row: View) : RecyclerView.ViewHolder(row) {
     val textViewDateList = row.findViewById<TextView>(R.id.textDateList)
     val buttonUpdate = row.findViewById<ImageButton>(R.id.imageButtonUpdate)
     val buttonDelete = row.findViewById<ImageButton>(R.id.imageButtonDelete)
-
-
 }

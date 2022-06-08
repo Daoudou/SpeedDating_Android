@@ -36,6 +36,8 @@ class DateService {
                     when(reader.nextName()){
                         "dateDating" -> if (reader.peek()!= JsonToken.NULL) dateList.date = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
+                        "peopleAdding" -> if (reader.peek()!= JsonToken.NULL) dateList.peopleAdd = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
                         else -> reader.skipValue()
                     }
                 }

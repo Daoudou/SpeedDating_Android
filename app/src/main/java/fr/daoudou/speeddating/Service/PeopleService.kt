@@ -16,9 +16,10 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
     private val apiUrl = UserService().getApiIp()
     private val getAllInfos = "$apiUrl/infos/infos"
     private val createInfoApirUrl = "$apiUrl/infos/infosAdd/"
+    private val getAllInfosByUser = "$apiUrl/infos/infoId/"
 
-    fun getAllInfos() : List<PeopleInfos>{
-        val url = URL(getAllInfos)
+    fun getAllInfos(queryIduser:String) : List<PeopleInfos>{
+        val url = URL(String.format("$getAllInfosByUser%s","$queryIduser"))
         var httpURLConnection : HttpURLConnection? = null
         try {
             httpURLConnection = url.openConnection() as HttpURLConnection
@@ -32,7 +33,7 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
             reader.beginArray()
             while (reader.hasNext()){
                 reader.beginObject()
-                val peopleList = PeopleInfos("","","","","")
+                val peopleList = PeopleInfos("","","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
                         "firstName"-> if (reader.peek()!= JsonToken.NULL) peopleList.firstName = reader.nextString()
@@ -58,8 +59,8 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
         }
     }
 
-    fun getAllInfosName() : List<PeopleInfos>{
-        val url = URL(getAllInfos)
+    fun getAllInfosName(queryIdUser: String) : List<PeopleInfos>{
+        val url = URL(String.format("$getAllInfosByUser%s","$queryIdUser"))
         var httpURLConnection : HttpURLConnection? = null
         try {
             httpURLConnection = url.openConnection() as HttpURLConnection
@@ -73,7 +74,7 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
             reader.beginArray()
             while (reader.hasNext()){
                 reader.beginObject()
-                val peopleList = PeopleInfos("","","","","")
+                val peopleList = PeopleInfos("","","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
                         "firstName"-> if (reader.peek()!= JsonToken.NULL) peopleList.firstName = reader.nextString()
@@ -111,7 +112,7 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
             reader.beginArray()
             while (reader.hasNext()){
                 reader.beginObject()
-                val peopleList = PeopleInfos("","","","","")
+                val peopleList = PeopleInfos("","","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
                         "id"-> if (reader.peek()!= JsonToken.NULL) peopleList.id = reader.nextString()

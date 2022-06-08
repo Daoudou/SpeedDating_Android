@@ -12,6 +12,15 @@ router.get('/infos', async(req,res)=>{
     res.send(infos)
 })
 
+router.get('/infoId/:idUser',async (req,res)=>{
+    const infos = await Infos.findAll({
+        where:{
+            idUser: req.params.id
+        }
+    })
+    return res.status(200).send(infos)
+})
+
 router.get('/infoId/:id',async (req,res)=>{
     const infos = await Infos.findAll({
         where:{
@@ -41,18 +50,11 @@ router.post('/infosAdd/:firstName/:lastName/:sexe/:birthdate/:idUserAdd',
                 firstName: req.params.firstName,
                 lastName: req.params.lastName,
                 sexe: req.params.sexe,
-                birthdate: req.params.birthdate
-            })
-            await linkInfosDateUser.create({
+                birthdate: req.params.birthdate,
                 idUser: req.params.idUserAdd,
-                idInfos: idlers
             })
             res.status(201).send("Ajout effectuer")
         }else{
-            await linkInfosDateUser.create({
-                idUser: req.params.idUserAdd,
-                idInfos: personne.id
-            })
             res.status(201).send("Personne existante")
         }
 

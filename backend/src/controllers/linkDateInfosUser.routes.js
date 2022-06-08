@@ -21,4 +21,14 @@ router.get('/linkInfos/:id', async(req,res)=>{
     return res.status(200).send(linkInfos)
 })
 
+router.get('/linkAll/:idUser/:idInfos',async(req,res)=>{
+    const linkAll = await link.findAll({
+        where:{
+            idUser: req.params.idUser,
+            idInfos: req.params.idInfos
+        }
+    })
+    return res.status(200).send(linkAll)
+})
+
 exports.initializeRoutes = () => router;
