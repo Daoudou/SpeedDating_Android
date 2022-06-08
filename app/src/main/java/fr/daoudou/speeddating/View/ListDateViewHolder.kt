@@ -8,9 +8,9 @@ import fr.daoudou.speeddating.R
 
 class ListDateViewHolder(row: View) : RecyclerView.ViewHolder(row) {
 
-    val textViewDateList = row.findViewById<TextView>(R.id.textDateList) as TextView
-    val buttonUpdate = row.findViewById<ImageButton>(R.id.imageButtonUpdate) as ImageButton
-    val buttonDelete = row.findViewById<ImageButton>(R.id.imageButtonDelete) as ImageButton
+    val textViewDateList = row.findViewById<TextView>(R.id.textDateList)
+    val buttonUpdate = row.findViewById<ImageButton>(R.id.imageButtonUpdate)
+    val buttonDelete = row.findViewById<ImageButton>(R.id.imageButtonDelete)
 
 
 }

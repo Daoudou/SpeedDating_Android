@@ -25,13 +25,31 @@ router.get('/:id', async (req, res) => {
     res.send(dateIdUser)
 })
 
-router.get('/userDateId/:id', async (req,res)=>{
+router.get('/userDateId/:id', async (req, res) => {
     const dateById = await Dating.findAll({
-        where:{
+        where: {
             idUserDating: req.params.id
         }
     })
-    res.send(dateById)
+    //
+    // const temp = {
+    //     id: dateById.id
+    // }
+    console.log(dateById)
+    let tab = []
+    for (const date of dateById) {
+        const temp = {
+            id: date.id,
+            idUserDating: date.idUserDating,
+            idInfosDating: date.idInfosDating,
+            peopleAdding: date.peopleAdding,
+            dateDating: date.dateDating.toLocaleDateString(),
+            comment: date.comment,
+            note: date.note
+        }
+        tab.push(temp)
+    }
+    res.send(tab)
 })
 
 router.get('/infosDatingId/:id', async (req, res) => {

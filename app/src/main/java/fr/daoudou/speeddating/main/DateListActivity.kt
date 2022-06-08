@@ -1,6 +1,7 @@
 package fr.daoudou.speeddating.main
 
 import android.os.Bundle
+import android.os.StrictMode
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
@@ -19,6 +20,9 @@ class DateListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.date_list_main)
+
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
 
         val recyclerViewDateList = findViewById<RecyclerView>(R.id.recyclerDateList)
 

@@ -20,7 +20,7 @@ class ListDateAdapter(private val context: Context,
                       private val dataSource: ArrayList<DateInfo>
                     ) : RecyclerView.Adapter<ListDateViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListDateViewHolder {
-        return ListDateViewHolder(LayoutInflater.from(context).inflate(R.layout.date_list_main,parent,false))
+        return ListDateViewHolder(LayoutInflater.from(context).inflate(R.layout.listrow,parent,false))
     }
 
     override fun onBindViewHolder(holder: ListDateViewHolder, position: Int) {
