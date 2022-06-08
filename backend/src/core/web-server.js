@@ -13,7 +13,6 @@ var salt = bcrypt.genSaltSync(12)
 class WebServer {
   app = undefined;
   port = 3000;
-  server = "172.12.181.130";
 
   constructor() {
     this.app = express();

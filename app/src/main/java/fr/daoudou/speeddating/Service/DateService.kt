@@ -14,9 +14,10 @@ class DateService {
     private val apiUrl = UserService().getApiIp()
     private val getAllDate = "$apiUrl/dating/"
     private val createDate = "$apiUrl/dating/datingAdd/"
+    private val getDateByUser = "$apiUrl/dating/userDateId/"
 
-    fun getAllDate(): List<DateInfo>{
-        val url = URL(getAllDate)
+    fun getAllDateByUser(queryIdUser :String): List<DateInfo>{
+        val url = URL(String.format("$getDateByUser%s","$queryIdUser"))
         var httpURLConnection : HttpURLConnection? = null
         try {
             httpURLConnection = url.openConnection() as HttpURLConnection
@@ -34,10 +35,6 @@ class DateService {
                 while (reader.hasNext()){
                     when(reader.nextName()){
                         "dateDating" -> if (reader.peek()!= JsonToken.NULL) dateList.date = reader.nextString()
-                        else {reader.hasNext(); "Non renseigne"}
-                        "comment" -> if (reader.peek()!= JsonToken.NULL) dateList.comment = reader.nextString()
-                        else {reader.hasNext(); "Non renseigne"}
-                        "note" -> if (reader.peek()!= JsonToken.NULL) dateList.note = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
                         else -> reader.skipValue()
                     }

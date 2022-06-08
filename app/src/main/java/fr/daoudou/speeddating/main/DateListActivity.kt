@@ -5,9 +5,14 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import fr.daoudou.speeddating.Info.DateInfo
 import fr.daoudou.speeddating.R
 import fr.daoudou.speeddating.Service.DateService
+import fr.daoudou.speeddating.Service.UserService
+import fr.daoudou.speeddating.adapter.ListDateAdapter
+import java.io.IOException
 
 class DateListActivity : AppCompatActivity() {
 
@@ -15,22 +20,23 @@ class DateListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.date_list_main)
 
-        val svc = DateService()
-        /*
-        val listDate = findViewById<ListView>(R.id.listDateListView)
+        val recyclerViewDateList = findViewById<RecyclerView>(R.id.recyclerDateList)
+
         Thread(Runnable {
             runOnUiThread {
-                listDate.visibility = View.INVISIBLE
+                try {
+                    val token = UserService().getToken()
+                    val svc = DateService()
+                    val svcDateList = svc.getAllDateByUser(token)
+
+                    recyclerViewDateList.layoutManager = LinearLayoutManager(this)
+                    recyclerViewDateList.adapter = ListDateAdapter(this, svcDateList as ArrayList<DateInfo>)
+                    (recyclerViewDateList.adapter as ListDateAdapter).notifyDataSetChanged()
+
+                }catch (e  :IOException){
+                    e.printStackTrace()
+                }
             }
-            val result = svc.getAllDate()
-            runOnUiThread {
-                listDate.adapter = ArrayAdapter<DateInfo>(
-                    applicationContext,android.R.layout.simple_list_item_1,
-                    android.R.id.text1,
-                    result
-                )
-                listDate.visibility = View.VISIBLE
-            }
-        }).start() */
+        }).start()
     }
 }
