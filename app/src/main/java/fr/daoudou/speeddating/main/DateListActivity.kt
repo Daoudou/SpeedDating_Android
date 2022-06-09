@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 
 class DateListActivity : AppCompatActivity() {
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint("SimpleDateFormat", "NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)

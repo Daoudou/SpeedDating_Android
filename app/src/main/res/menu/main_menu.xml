@@ -26,13 +26,13 @@
         android:id="@+id/profilMenu"
         android:title="@string/profil"
         />
-    <item
-        android:id="@+id/parameterMenu"
-        android:title="@string/Parameter"
-        />
-    <item
-        android:id="@+id/helpMenu"
-        android:title="@string/aide"/>
+<!--    <item-->
+<!--        android:id="@+id/parameterMenu"-->
+<!--        android:title="@string/Parameter"-->
+<!--        />-->
+<!--    <item-->
+<!--        android:id="@+id/helpMenu"-->
+<!--        android:title="@string/aide"/>-->
     <item
         android:id="@+id/disconnectMenu"
         android:title="@string/deconnexion"/>

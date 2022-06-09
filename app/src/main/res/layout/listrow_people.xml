@@ -17,21 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButtonUpdatePeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:src="@mipmap/ic_update"
-        app:layout_constraintStart_toEndOf="@+id/textPeopleList"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
         android:id="@+id/imageButtonDeletePeople"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:src="@mipmap/ic_delete"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonUpdatePeople"
+        app:layout_constraintStart_toEndOf="@+id/textPeopleList"
         app:layout_constraintTop_toTopOf="parent" />
 
 

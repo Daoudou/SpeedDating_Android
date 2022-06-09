@@ -16,7 +16,7 @@ var tokenIdDecode : String ="";
 
 class UserService {
 
-    private val apiUrlDate = "http://172.20.255.50:3000"
+    private val apiUrlDate = "http://172.20.241.142:3000"
     private val getAllUserApiUrl = "$apiUrlDate/users/"
     private val createUserApirUrl = "$apiUrlDate/users/create/"
     private val loginUserApiUrl = "$apiUrlDate/users/login/"

@@ -1,5 +1,7 @@
 package fr.daoudou.speeddating.main
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -35,10 +37,18 @@ class RegisterActivity : AppCompatActivity() {
                         if (registerPage == ResponseCode.StatusCode.Created){
                             AlertDialog.Builder(this).apply {
                                 setMessage("Inscription effectuée")
+                                setPositiveButton("D'accord", DialogInterface.OnClickListener { dialogInterface, i ->
+                                    dialogInterface.dismiss()
+                                    val intent = Intent(this@RegisterActivity,AcceuilActivity::class.java)
+                                    startActivity(intent)
+                                })
                             }.create().show()
                         }else if(registerPage == ResponseCode.StatusCode.BadRequest){
                             AlertDialog.Builder(this).apply {
                                 setMessage("Erreur lors de l'inscription")
+                                setPositiveButton("D'accord", DialogInterface.OnClickListener { dialogInterface, i ->
+                                    dialogInterface.dismiss()
+                                })
                             }.create().show()
                         }
                     }

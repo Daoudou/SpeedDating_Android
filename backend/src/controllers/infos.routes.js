@@ -21,13 +21,27 @@ router.get('/infoId/:idUser',async (req,res)=>{
     return res.status(200).send(infos)
 })
 
-router.get('/infoId/:id',async (req,res)=>{
+router.get('/infoIdPeople/:id',async (req,res)=>{
     const infos = await Infos.findAll({
         where:{
             id: req.params.id
         }
     })
-    return res.status(200).send(infos)
+
+    let tab = []
+    for (const infosTab of infos) {
+        const temp = {
+            id: infosTab.id,
+            idUser: infosTab.idUser ,
+            firstName: infosTab.firstName,
+            lastName: infosTab.lastName,
+            sexe: infosTab.sexe,
+            birthdate: infosTab.birthdate.toLocaleDateString()
+        }
+        tab.push(temp)
+    }
+
+    return res.status(200).send(tab)
 })
 
 router.post('/infosAdd/:firstName/:lastName/:sexe/:birthdate/:idUserAdd',
@@ -89,6 +103,19 @@ router.put('/:id',
     }
 })
 
-
+router.delete('/deleteInfos/:id',async(req,res)=>{
+    try {
+        await Infos.destroy({
+            where:{
+                id: req.params.id
+            }
+        })
+        res.status(200)
+        res.send('Personne Supprimée')
+    }catch (e) {
+        console.error(e)
+        res.status(400).send('Erreur lors de la suppression')
+    }
+})
 
 exports.initializeRoutes = () => router;

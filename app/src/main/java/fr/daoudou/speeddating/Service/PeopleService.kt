@@ -17,6 +17,8 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
     private val getAllInfos = "$apiUrl/infos/infos"
     private val createInfoApirUrl = "$apiUrl/infos/infosAdd/"
     private val getAllInfosByUser = "$apiUrl/infos/infoId/"
+    private val deleteInfosByUser = "$apiUrl/infos/deleteInfos/"
+
 
     fun getAllInfos(queryIduser:String) : List<PeopleInfos>{
         val url = URL(String.format("$getAllInfosByUser%s","$queryIduser"))
@@ -36,6 +38,8 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
                 val peopleList = PeopleInfos("","","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
+                        "id"-> if (reader.peek()!= JsonToken.NULL) peopleList.id = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
                         "firstName"-> if (reader.peek()!= JsonToken.NULL) peopleList.firstName = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
                         "lastName" -> if (reader.peek()!= JsonToken.NULL) peopleList.lastName = reader.nextString()
@@ -152,7 +156,29 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
         return ResponseCode.StatusCode.Created
     }
 
+    fun deleteUserInfos(queryIdInfos:String) : ResponseCode.StatusCode{
+        val url = URL(String.format("$deleteInfosByUser%s","$queryIdInfos"))
+        var httpURLConnection : HttpURLConnection? = null
+        try {
+            httpURLConnection = url.openConnection() as HttpURLConnection
+            httpURLConnection.requestMethod = "DELETE"
+            httpURLConnection.connect()
+            val code =httpURLConnection.responseCode
+            if (code != HttpURLConnection.HTTP_OK)
+                return ResponseCode.StatusCode.BadRequest
+        }catch (e : IOException){
+            e.printStackTrace()
+        }finally {
+            httpURLConnection?.disconnect()
+        }
+        return ResponseCode.StatusCode.Created
+    }
+
+
     override fun doInBackground(vararg p0: String?): List<*> {
         TODO("Not yet implemented")
     }
+
+
+
 }

@@ -27,49 +27,53 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Note de la rencontre :"
-        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonUpdateDate" />
+        app:layout_constraintTop_toBottomOf="@+id/ButtonUpdateDate" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="Commentaire de la rencontre : "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingButtonUpdateNote" />
+        app:layout_constraintTop_toBottomOf="@+id/SpinnerUpdateNote" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingButtonUpdateNote"
+    <Spinner
+        android:id="@+id/SpinnerUpdateNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:contentDescription="@string/Datedate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16"/>
 
     <EditText
         android:id="@+id/editTextDateCommentaireUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="5"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingButtonUpdateDate"
+    <Button
+        android:id="@+id/ButtonUpdateDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:clickable="true"
         android:contentDescription="@string/Datedate"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        />
+
+    <Button
+        android:id="@+id/buttonUpdateDateComfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mettre a jour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDateCommentaireUpdate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

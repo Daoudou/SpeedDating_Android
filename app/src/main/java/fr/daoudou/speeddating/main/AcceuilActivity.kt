@@ -48,7 +48,8 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         val intentAddPeople = Intent(this,PeopleActivity::class.java)
         val intentDateAdd = Intent(this, DateActivity::class.java)
         val intentDateList = Intent(this,DateListActivity::class.java)
-        val intentPeopleList = Intent(this,PeopleActivity::class.java)
+        val intentPeopleList = Intent(this,PeopleListActivity::class.java)
+        val intentDeco = Intent(this,MainActivity::class.java)
 
         val spinner = Spinner(this)
         spinner.id = NEW_SPINNER_ID
@@ -59,6 +60,7 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
             R.id.addDateMenu -> startActivity(intentDateAdd)
             R.id.listDate -> startActivity(intentDateList)
             R.id.listPeople -> startActivity(intentPeopleList)
+            R.id.disconnectMenu -> startActivity(intentDeco)
         }
         return super.onOptionsItemSelected(item)
     }

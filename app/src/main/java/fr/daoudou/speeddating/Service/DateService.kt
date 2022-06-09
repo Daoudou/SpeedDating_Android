@@ -107,8 +107,8 @@ class DateService {
         return ResponseCode.StatusCode.Created
     }
 
-    fun updateDate(queryIdDate: String,queryDateDating : String, queryNote : String, queryComment : String) : ResponseCode.StatusCode{
-        val url = URL(String.format("$updateDate%s","$queryIdDate","$queryDateDating","$queryNote","$queryComment"))
+    fun updateDate(queryIdDate: String,queryDateDating : String, queryNote : Int, queryComment : String) : ResponseCode.StatusCode{
+        val url = URL(String.format("$updateDate%s/%s/%s/%s","$queryIdDate","$queryDateDating","$queryNote","$queryComment"))
         var httpURLConnection  :HttpURLConnection? = null
         try {
             httpURLConnection = url.openConnection() as HttpURLConnection
