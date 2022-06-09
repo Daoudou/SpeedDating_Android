@@ -7,17 +7,6 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/editTextProfilPseudo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/pseudo"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/buttonRetrun"
         android:layout_width="wrap_content"
@@ -26,16 +15,16 @@
         android:layout_marginTop="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listViewProfil" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerProfil" />
 
-    <ListView
-        android:id="@+id/listViewProfil"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProfilPseudo" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="176dp"
@@ -46,4 +35,5 @@
         app:layout_constraintHorizontal_bias="0.544"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
