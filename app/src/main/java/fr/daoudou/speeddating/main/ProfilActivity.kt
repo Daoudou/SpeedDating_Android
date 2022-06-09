@@ -1,7 +1,9 @@
 package fr.daoudou.speeddating.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import fr.daoudou.speeddating.Info.UserInfo
@@ -25,5 +27,10 @@ class ProfilActivity : AppCompatActivity() {
                         result)
                 }
         }).start()
+
+        findViewById<Button>(R.id.buttonRetrun).setOnClickListener {
+            val intent = Intent(this,AcceuilActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

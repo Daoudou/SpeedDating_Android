@@ -80,15 +80,13 @@ router.post('/datingAdd/:peopleAddingName/:dateDating/:comment/:note/:InfoAddId/
     })
 
 
-router.put('/:id',
-    body('dateDating').isString().notEmpty(),
-    body('note').isString().notEmpty(),
+router.put('/:id/:dateDating/:note/:comment',
     async (req, res) => {
         try {
             await Dating.update({
-                dateDating: req.body.dateDating,
-                comment: req.body.comment,
-                note: parseInt(req.body.note),
+                dateDating: req.params.dateDating,
+                comment: req.params.comment,
+                note: parseInt(req.params.note),
             }, {
                 where: {
                     id: req.params.id

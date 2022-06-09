@@ -3,6 +3,7 @@ package fr.daoudou.speeddating.main
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.os.StrictMode
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -20,6 +21,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
+
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+
         val svcLogin = UserService()
 
         findViewById<Button>(R.id.buttonLoginPage).setOnClickListener {
@@ -31,8 +36,9 @@ class LoginActivity : AppCompatActivity() {
                     progressBarlogin.visibility = View.INVISIBLE
                 }
                 try {
-                    val loginPage = svcLogin.loginUser(queryEmail,queryPassword)
+
                     runOnUiThread {
+                        val loginPage = svcLogin.loginUser(queryEmail,queryPassword)
                         progressBarlogin.visibility = View.VISIBLE
                         if (loginPage == ResponseCode.StatusCode.OK ){
                             AlertDialog.Builder(this).apply {

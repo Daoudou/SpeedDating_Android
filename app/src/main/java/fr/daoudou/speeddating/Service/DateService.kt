@@ -15,6 +15,8 @@ class DateService {
     private val getAllDate = "$apiUrl/dating/"
     private val createDate = "$apiUrl/dating/datingAdd/"
     private val getDateByUser = "$apiUrl/dating/userDateId/"
+    private val deleteDate = "$apiUrl/dating/deleteDate/"
+    private val updateDate = "$apiUrl/dating/"
 
     fun getAllDateByUser(queryIdUser :String): List<DateInfo>{
         val url = URL(String.format("$getDateByUser%s","$queryIdUser"))
@@ -31,9 +33,11 @@ class DateService {
             reader.beginArray()
             while (reader.hasNext()){
                 reader.beginObject()
-                val dateList = DateInfo("","",null,"","")
+                val dateList = DateInfo("","","",null,"","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
+                        "id" -> if (reader.peek()!= JsonToken.NULL) dateList.id = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
                         "dateDating" -> if (reader.peek()!= JsonToken.NULL) dateList.date = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
                         "peopleAdding" -> if (reader.peek()!= JsonToken.NULL) dateList.peopleAdd = reader.nextString()
@@ -85,4 +89,39 @@ class DateService {
         return ResponseCode.StatusCode.Created
     }
 
+    fun deleteDate(queryIdDate : String): ResponseCode.StatusCode {
+        val url = URL(String.format("$deleteDate%s","$queryIdDate"))
+        var httpURLConnection  :HttpURLConnection? = null
+        try {
+            httpURLConnection = url.openConnection() as HttpURLConnection
+            httpURLConnection.requestMethod = "DELETE"
+            httpURLConnection.connect()
+            val code =httpURLConnection.responseCode
+            if (code != HttpURLConnection.HTTP_OK)
+                return ResponseCode.StatusCode.BadRequest
+        }catch (e : IOException){
+            println(e)
+        }finally {
+            httpURLConnection?.disconnect()
+        }
+        return ResponseCode.StatusCode.Created
+    }
+
+    fun updateDate(queryIdDate: String,queryDateDating : String, queryNote : String, queryComment : String) : ResponseCode.StatusCode{
+        val url = URL(String.format("$updateDate%s","$queryIdDate","$queryDateDating","$queryNote","$queryComment"))
+        var httpURLConnection  :HttpURLConnection? = null
+        try {
+            httpURLConnection = url.openConnection() as HttpURLConnection
+            httpURLConnection.requestMethod = "PUT"
+            httpURLConnection.connect()
+            val code =httpURLConnection.responseCode
+            if (code != HttpURLConnection.HTTP_OK)
+                return ResponseCode.StatusCode.BadRequest
+        }catch (e : IOException){
+            println(e)
+        }finally {
+            httpURLConnection?.disconnect()
+        }
+        return ResponseCode.StatusCode.Created
+    }
 }

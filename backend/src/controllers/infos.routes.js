@@ -15,7 +15,7 @@ router.get('/infos', async(req,res)=>{
 router.get('/infoId/:idUser',async (req,res)=>{
     const infos = await Infos.findAll({
         where:{
-            idUser: req.params.id
+            idUser: req.params.idUser
         }
     })
     return res.status(200).send(infos)

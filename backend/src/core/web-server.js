@@ -28,7 +28,7 @@ class WebServer {
   }
 
   start() {
-    this.server = this.app.listen(this.port, () => {
+    this.server = this.app.listen(this.port, '0.0.0.0', () => {
       console.log(`Server listening on port ${this.port}`);
     });
   }

@@ -77,6 +77,8 @@ class PeopleService : AsyncTask<String, String, List<*>>() {
                 val peopleList = PeopleInfos("","","","","","")
                 while (reader.hasNext()){
                     when(reader.nextName()){
+                        "id"-> if (reader.peek()!= JsonToken.NULL) peopleList.id = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
                         "firstName"-> if (reader.peek()!= JsonToken.NULL) peopleList.firstName = reader.nextString()
                         else {reader.hasNext(); "Non renseigne"}
                         "lastName" -> if (reader.peek()!= JsonToken.NULL) peopleList.lastName = reader.nextString()

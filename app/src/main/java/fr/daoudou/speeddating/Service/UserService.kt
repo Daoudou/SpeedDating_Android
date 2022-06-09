@@ -16,18 +16,18 @@ var tokenIdDecode : String ="";
 
 class UserService {
 
-    private val apiUrl = "http://172.17.128.158:3000"
-    private val getAllUserApiUrl = "$apiUrl/users/"
-    private val createUserApirUrl = "$apiUrl/users/create/"
-    private val loginUserApiUrl = "$apiUrl/users/login/"
-    private val idUserApiUrl = "$apiUrl/users/usersId/"
+    private val apiUrlDate = "http://172.20.255.50:3000"
+    private val getAllUserApiUrl = "$apiUrlDate/users/"
+    private val createUserApirUrl = "$apiUrlDate/users/create/"
+    private val loginUserApiUrl = "$apiUrlDate/users/login/"
+    private val idUserApiUrl = "$apiUrlDate/users/usersId/"
 
     fun getToken(): String {
         return tokenIdDecode
     }
 
     fun getApiIp() : String {
-        return apiUrl
+        return apiUrlDate
     }
 
     fun getAllUser(): List<UserInfo> {

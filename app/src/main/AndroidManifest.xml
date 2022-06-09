@@ -33,9 +33,6 @@
             android:exported="false"/>
         <activity android:name=".main.PeopleListActivity"
             android:exported="false"/>
-        <activity android:name=".main.LinkActivity"
-            android:exported="false"
-            />
         <activity
             android:name=".main.MainActivity"
             android:exported="true">

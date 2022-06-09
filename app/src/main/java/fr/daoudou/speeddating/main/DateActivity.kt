@@ -2,6 +2,7 @@ package fr.daoudou.speeddating.main
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
@@ -35,11 +36,9 @@ class DateActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         setContentView(R.layout.date_add_main)
-        val svcLink = LinkService()
         val svcDate = DateService()
         val svcPeople = PeopleService()
         val queryIdUserAdd = UserService().getToken()
-        var queryIdInfoDateAdd = LinkService().getAll(queryIdUserAdd)
         var dateFormated : String =""
         var queryNote : String = ""
         var queryPeople  :String =""
@@ -73,7 +72,7 @@ class DateActivity : AppCompatActivity() {
 
             date.addOnPositiveButtonClickListener {
                 //val formatDate = SimpleDateFormat("dd-MM-yyyy")
-                val formatDate = SimpleDateFormat("yyyy-dd-MM")
+                val formatDate = SimpleDateFormat("yyyy-MM-dd")
                 dateFormated = formatDate.format(Date(it))
             }
 
@@ -90,7 +89,6 @@ class DateActivity : AppCompatActivity() {
                     runOnUiThread {
                         try {
                             var People: List<PeopleInfos> = svcPeople.getAllInfosName(queryIdUserAdd)
-                            var PeopleId : List<PeopleInfos> = svcPeople.getIdInfosName()
                             if(spinnerDateName != null){
                                 val adapterListName = ArrayAdapter(this,
                                     android.R.layout.simple_spinner_item,
@@ -159,6 +157,11 @@ class DateActivity : AppCompatActivity() {
                     }
                 }).start()
                 }
+
+        findViewById<Button>(R.id.buttonRetrun).setOnClickListener {
+            val intent = Intent(this,AcceuilActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

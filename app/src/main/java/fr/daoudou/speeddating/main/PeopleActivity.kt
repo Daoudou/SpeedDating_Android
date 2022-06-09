@@ -98,5 +98,10 @@ class PeopleActivity : AppCompatActivity() {
                 }
             }).start()
         }
+
+        findViewById<Button>(R.id.buttonRetrun).setOnClickListener {
+            val intent = Intent(this,AcceuilActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

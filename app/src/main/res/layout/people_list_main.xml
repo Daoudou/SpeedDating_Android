@@ -9,21 +9,34 @@
 
     <TextView
         android:id="@+id/textViewTitlePeopleList"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
         android:text="@string/listPeopleTitle"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/listPeopleView"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/buttonRetrun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Retour"
+        app:layout_constraintStart_toEndOf="@+id/textViewTitlePeopleList"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPeopleView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitlePeopleList"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitlePeopleList" />
 
 
 
