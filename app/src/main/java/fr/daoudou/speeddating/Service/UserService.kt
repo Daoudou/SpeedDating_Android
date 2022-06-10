@@ -16,11 +16,12 @@ var tokenIdDecode : String ="";
 
 class UserService {
 
-    private val apiUrlDate = "http://172.20.241.142:3000"
+    private val apiUrlDate = "http://172.20.244.177:3000"
     private val getAllUserApiUrl = "$apiUrlDate/users/"
     private val createUserApirUrl = "$apiUrlDate/users/create/"
     private val loginUserApiUrl = "$apiUrlDate/users/login/"
     private val idUserApiUrl = "$apiUrlDate/users/usersId/"
+    private val getUserByUserApiUrl = "$apiUrlDate/users/usersByUser/"
 
     fun getToken(): String {
         return tokenIdDecode
@@ -157,6 +158,44 @@ class UserService {
             httpURLConnection?.disconnect()
         }
     }
+
+    fun getUserByUser(queryUser : String) : List<UserInfo>{
+        val url = URL(String.format("$getUserByUserApiUrl%s","$queryUser"))
+        var httpURLConnection : HttpURLConnection? = null
+        try {
+            httpURLConnection = url.openConnection() as HttpURLConnection
+            httpURLConnection.connect()
+            val code = httpURLConnection.responseCode
+            if (code != HttpURLConnection.HTTP_OK)
+                return emptyList();
+            val inputStream = httpURLConnection.inputStream ?: return emptyList()
+            val reader = JsonReader(inputStream.bufferedReader())
+            val result = mutableListOf<UserInfo>()
+            reader.beginArray()
+            while(reader.hasNext()){
+                reader.beginObject()
+                val userList = UserInfo("","","","","")
+                while (reader.hasNext()){
+                    when(reader.nextName()){
+                        "pseudo" ->if(reader.peek()!= JsonToken.NULL) userList.pseudo = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
+                        "email" ->if(reader.peek()!= JsonToken.NULL) userList.email = reader.nextString()
+                        else {reader.hasNext(); "Non renseigne"}
+                        else -> reader.skipValue()
+                    }
+                }
+                result.add(userList)
+                reader.endObject()
+            }
+            reader.endArray()
+            return result
+        } catch (e: IOException) {
+            return emptyList()
+        } finally {
+            httpURLConnection?.disconnect()
+        }
+    }
+
 }
 
 private fun <E> MutableList<E>.sort() {

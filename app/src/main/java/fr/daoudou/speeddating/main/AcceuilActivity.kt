@@ -8,9 +8,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import fr.daoudou.speeddating.Info.UserInfo
 import fr.daoudou.speeddating.R
 import fr.daoudou.speeddating.Service.UserService
+import fr.daoudou.speeddating.adapter.ListUserAdapter
+import java.io.IOException
 
 class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private val NEW_SPINNER_ID = 1
@@ -18,23 +22,29 @@ class AcceuilActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acceuil_page)
         val svc = UserService()
-        val listUser = findViewById<ListView>(R.id.listViewAll)
-        val progressBar = findViewById<ProgressBar>(R.id.ProgressBarQuery)
-        Thread(Runnable{
-            runOnUiThread{
-                progressBar.visibility = View.INVISIBLE
-                listUser.visibility = View.INVISIBLE
-            }
-            val result = svc.getAllUser()
-            runOnUiThread {
-                listUser.adapter = ArrayAdapter<UserInfo>(applicationContext,
-                    android.R.layout.simple_list_item_1,
-                    android.R.id.text1,
-                    result)
-                progressBar.visibility = View.VISIBLE
-                listUser.visibility = View.VISIBLE
-            }
-        }).start()
+         val progressBar = findViewById<ProgressBar>(R.id.ProgressBarQuery)
+        val recyclerViewUser = findViewById<RecyclerView>(R.id.recuclerViewAllUser)
+        findViewById<Button>(R.id.buttonSearch).setOnClickListener {
+            Thread(Runnable{
+                runOnUiThread{
+                    progressBar.visibility = View.INVISIBLE
+                }
+                runOnUiThread{
+                    try {
+                        val queryUserSearch = findViewById<EditText>(R.id.editTextAcceuilListSearch).text.toString()
+                        val listUser = svc.getUserByUser(queryUserSearch)
+                        recyclerViewUser.layoutManager = LinearLayoutManager(this)
+                        recyclerViewUser.adapter = ListUserAdapter(this,listUser as ArrayList<UserInfo>)
+                        (recyclerViewUser.adapter as ListUserAdapter).notifyDataSetChanged()
+
+                    }catch (e :IOException){
+                        e.printStackTrace()
+                    }
+                }
+
+            }).start()
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

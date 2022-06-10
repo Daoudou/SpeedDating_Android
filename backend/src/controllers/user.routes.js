@@ -28,6 +28,19 @@ router.get('/usersId/:id', async (req, res) => {
     res.status(200).send(foundUser);
 });
 
+router.get('/usersByUser/:pseudo',async (req,res)=>{
+
+    const foundAllUser = await User.findAll({
+        where: {
+            pseudo: req.params.pseudo
+        }
+    })
+    if (!foundAllUser){
+        throw new Error('Users not found')
+    }
+    res.status(200).send(foundAllUser)
+})
+
 router.post('/login/:email/:password',
    /* body('email').notEmpty(),
     body('password').notEmpty(), */
