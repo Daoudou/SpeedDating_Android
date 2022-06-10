@@ -78,7 +78,6 @@
         android:autofillHints="password"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="Password:85147913"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegisterEmail" />

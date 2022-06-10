@@ -39,7 +39,6 @@
         android:ems="15"
         android:importantForAutofill="no"
         android:inputType="textPassword"
-        android:text="Password:85147913"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
